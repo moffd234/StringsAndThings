@@ -1,6 +1,8 @@
 package io.zipcoder;
 
 
+import java.util.Arrays;
+
 /**
  * @author tariq
  */
@@ -14,8 +16,23 @@ public class StringsAndThings {
      *           countYZ("day fez"); // Should return 2
      *           countYZ("day fyyyz"); // Should return 2
      */
+
+    // Create a counter
+    // Split input into words
+    // Iterate of array of words
+    // Check if last index of each word ends in y, Y, z, or Z
+    // If so increase counter
     public Integer countYZ(String input){
-        return null;
+        int total = 0;
+        String[] word_array = input.split(" ");
+        for(String i: word_array){
+            int checked_index = i.length() - 1;
+            if(i.charAt(checked_index) == 'y' || i.charAt(checked_index) == 'Y'
+                    || i.charAt(checked_index) == 'z' || i.charAt(checked_index) == 'Z'){
+                total += 1;
+            }
+        }
+        return total;
     }
 
     /**
@@ -27,8 +44,10 @@ public class StringsAndThings {
      *           removeString("Hello there", "e") //  Should return "Hllo thr"
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
+
+    // Call replace all and replace with empty string
     public String removeString(String base, String remove){
-        return null;
+        return base.replaceAll(remove, "");
     }
 
     /**
@@ -39,8 +58,18 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("This is notnot") // Should return true
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
+
+    /*
+    Split input into substrings containing "is" and "not"
+     */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        String[] isArray = input.split("is");
+        String newStringWithoutIs = Arrays.toString(isArray);
+        int numIsRemoved = (input.length() - newStringWithoutIs.length()) % 2;
+        String[] notArray = input.split("not");
+        String newStringWithoutNot = Arrays.toString(notArray);
+        int numNotRemoved = (input.length() - newStringWithoutNot.length()) % 3;
+        return numIsRemoved == numNotRemoved;
     }
 
     /**
@@ -48,10 +77,28 @@ public class StringsAndThings {
      * Return true if all the g's in the given string are happy.
      * example : gHappy("xxggxx") // Should return  true
      *           gHappy("xxgxx") // Should return  false
-     *           gHappy("xxggyygxx") // Should return  false
+     *           gHappy("xxggyygxx") // Should return false
+     */
+
+    /*
+    Turn input into a charArray
+    iterate through the array checking if each character is a 'g'
+    if there is a g then check if there is a g to the left or right
+    if not return false
+    else continue
+    if end of loop then return true
      */
     public Boolean gIsHappy(String input){
-        return null;
+        char[] inputArray = input.toCharArray();
+        // boolean isHappy = true;
+        for(int i = 0; i < inputArray.length; i++){
+            if(inputArray[i] == 'g'){
+                if(inputArray[i + 1] != 'g' && inputArray[i - 1] != 'g'){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 
@@ -63,6 +110,14 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int count = 0;
+        for(int i = 0; i < input.length(); i++){
+            if(i + 2 <= input.length()) {
+                if (input.charAt(i) == input.charAt(i + 1) && input.charAt(i) == input.charAt(i + 2)) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }
