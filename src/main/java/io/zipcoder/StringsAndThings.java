@@ -63,13 +63,28 @@ public class StringsAndThings {
     Split input into substrings containing "is" and "not"
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        String[] isArray = input.split("is");
-        String newStringWithoutIs = Arrays.toString(isArray);
-        int numIsRemoved = (input.length() - newStringWithoutIs.length()) % 2;
-        String[] notArray = input.split("not");
-        String newStringWithoutNot = Arrays.toString(notArray);
-        int numNotRemoved = (input.length() - newStringWithoutNot.length()) % 3;
-        return numIsRemoved == numNotRemoved;
+        int countIs = 0;
+        int countNot = 0;
+        int index = 0;
+        while(index != -1){
+            index = input.indexOf("is", index);
+            if(index != -1) {
+                // ASSERT: No more is substrings were found
+                countIs++;
+                index++; // Stops from searching the same area infinitely
+            }
+        }
+        int isIndex = 0;
+        while(isIndex != -1){
+            isIndex = input.indexOf("not", isIndex);
+            if(isIndex != -1) {
+                // ASSERT: No more not substrings were found
+                countNot++;
+                isIndex++;
+            }
+        }
+
+        return countIs == countNot;
     }
 
     /**
