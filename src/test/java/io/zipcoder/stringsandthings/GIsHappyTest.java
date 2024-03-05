@@ -30,6 +30,7 @@ public class GIsHappyTest {
         Assert.assertFalse(actual);
     }
 
+    // NOT SURE WHY THIS IS assertTrue WHEN XXGGYYGXX HAS A LONELY G
     @Test
     public void gIsHappyTest3(){
         Boolean actual = stringsAndThings.gIsHappy("xxggyygxx");
